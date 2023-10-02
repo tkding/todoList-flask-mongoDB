@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% set title = "Create page" %}
+
+{% block content %}
+    <div>
+        <form action="" method="POST">
+            {{ form.csrf_token() }}
+            <fieldset class="form-group">
+                <legend> Create a new Todo </legend>
+
+                <div class="form-group">
+                    {{ form.title.label() }}
+                    {% if form.title.errors %}
+                        {{ form.title(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(class="form-control", placeholder="title" ) }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.description.label() }}
+                    {% if form.description.errors %}
+                        {{ form.description(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.description.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.description(class="form-control", placeholder="description" ) }}
+                    {% endif %}
+                </div>
+                <!-- completed, select field -->
+                <div class="form-group">
+                    {{ form.completed.label() }}
+                    {% if form.completed.errors %}
+                        {{ form.completed(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.completed.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.completed(class="form-control") }}
+                    {% endif %}
+                </div>
+                <br>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Create</button>
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+{% endblock %}
